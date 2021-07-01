@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
 
@@ -17,3 +17,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Weather.api.dll"] #tells Docker to configure the container to run as an executable.
+
+#CMD ["bash", "-c", "apt update && apt install curl -y"]
+RUN bash -c "apt update && apt install curl -y"
